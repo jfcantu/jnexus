@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package jnexus;
+
+option go_package = "github.com/jfcantu/jnexus/pb";
+
+import "github.com/mwitkow/go-proto-validators/validator.proto";
+
+message LinkStatus {
+    string server1 = 1 [(validator.field) = {msg_exists : true}];
+    string server2 = 2 [(validator.field) = {msg_exists : true}];
+    LinkState status = 3 [(validator.field) = {msg_exists : true}];
+}
+
+enum LinkState {
+    UNKNOWN = 0;
+    ACTIVE = 1;
+    INACTIVE = 2;
+    SYNCHRONIZING = 3;
+}

@@ -1,0 +1,15 @@
+@import "~@angular/material/theming";
+
+$route-app-primary: mat-palette($mat-gray, 900);
+$route-app-accent: mat-palette($mat-green);
+
+$route-app-theme: mat-dark-theme(
+  (
+    color: (
+      primary: $route-app-primary,
+      accent: $route-app-accent,
+    ),
+  )
+);
+
+@include angular-material-theme($route-app-theme);

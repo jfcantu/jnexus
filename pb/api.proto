@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package jnexus;
+
+option go_package = "github.com/jfcantu/jnexus/pb";
+
+import "google/protobuf/empty.proto";
+import "pb/messages.proto";
+
+service API {
+    rpc UpdateLinkStatus(jnexus.LinkStatus) returns (google.protobuf.Empty) {}
+}

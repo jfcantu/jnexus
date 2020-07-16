@@ -1,0 +1,24 @@
+<div fxLayout="column">
+  <mat-toolbar>
+    <button
+      color="accent"
+      mat-icon-button
+      [matBadge]="(this.routingService.splitServers | async).length"
+      matBadgeColor="warn"
+      matBadgeSize="small"
+      aria-label="Show a list of servers not currently found on the network."
+      matTooltip="Show Split Servers"
+      (click)="showSplitServers()"
+    >
+      <mat-icon>call_split</mat-icon>
+    </button>
+  </mat-toolbar>
+  <mat-sidenav-container [hasBackdrop]="false">
+    <mat-sidenav-content>
+      <app-map (nodeSelected)="showNodeInfo($event)"></app-map>
+    </mat-sidenav-content>
+    <mat-sidenav mode="over" position="end">
+      <div #portalElement width="100%"></div>
+    </mat-sidenav>
+  </mat-sidenav-container>
+</div>

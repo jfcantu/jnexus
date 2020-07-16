@@ -1,0 +1,36 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Split Servers</mat-card-title>
+  </mat-card-header>
+  <mat-card-content *ngIf="this.splitServers.length == 0; else missingServers">
+    <span *ngIf="this.splitServers.length == 0; else missingServers">
+      Everything seems to be online. w00t
+    </span>
+  </mat-card-content>
+</mat-card>
+
+<ng-template #missingServers>
+  <div *ngFor="let server of this.splitServers">
+    <div>Server: {{ server.properties.name }}</div>
+    <mat-card-actions *ngIf="this.splitServers.length > 0">
+      <button
+        mat-button
+        color="accent"
+        [matMenuTriggerFor]="connectMenu"
+        [matMenuTriggerData]="{
+          targets: this.mapService.getLinkedNodes(server.id)
+        }"
+      >
+        Reconnect
+      </button>
+    </mat-card-actions>
+  </div>
+</ng-template>
+
+<mat-menu #connectMenu="matMenu">
+  <ng-template matMenuContent let-targets="targets">
+    <button mat-menu-item *ngFor="let target of targets" (click)="this.nope()">
+      {{ target.properties.name }}
+    </button>
+  </ng-template>
+</mat-menu>

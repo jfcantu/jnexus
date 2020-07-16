@@ -1,0 +1,38 @@
+<div fxLayout="column">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Server Info</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Hostname: {{ this.server.properties.hostname }}</p>
+      <p>Node Types: {{ this.server.labels.join() }}</p>
+      <p *ngIf="this.server.properties.tier">
+        Hub tier: {{ this.server.properties.tier }}
+      </p>
+    </mat-card-content>
+    <mat-card-header>
+      <mat-card-title>Link Information</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>Currently connected to:</p>
+
+      <button
+        mat-flat-button
+        color="accent"
+        class="linkButton"
+        *ngFor="let link of this.activeLinks"
+        (click)="this.setServer(link.id)"
+        >{{ link.properties.name }}</button
+      >
+      <p>Designated hub links:</p>
+      <button
+        mat-flat-button
+        color="accent"
+        class="linkButton"
+        *ngFor="let link of this.mapLinks"
+        (click)="this.setServer(link.id)"
+        >{{ link.properties.name }}</button
+      >
+    </mat-card-content>
+  </mat-card>
+</div>

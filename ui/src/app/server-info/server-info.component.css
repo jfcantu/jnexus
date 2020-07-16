@@ -1,0 +1,9 @@
+.mat-list-base .mat-list-item {
+  height: 30px; /* default is 72px */
+}
+
+.linkButton {
+  text-align: left;
+  width: 100%;
+  margin: 3px;
+}
